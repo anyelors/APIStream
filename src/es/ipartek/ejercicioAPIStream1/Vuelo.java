@@ -2,6 +2,7 @@ package es.ipartek.ejercicioAPIStream1;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class Vuelo implements Comparable<Vuelo>{
 
@@ -47,14 +48,25 @@ public class Vuelo implements Comparable<Vuelo>{
 
     @Override
     public String toString() {
-        return "Vuelo[" +
-                "Código Vuelo='" + codigoVuelo + '\'' +
-                ", Origen='" + origen + '\'' +
-                ", Destino='" + destino + '\'' +
-                ", Fecha Salida=" + fechaSalida +
-                ", Hora Llegada=" + horaLlegada +
-                ", Numero Pasajeros=" + numeroPasajeros +
+        return "Vuelo [" +
+                "Código Vuelo = '" + codigoVuelo + '\'' +
+                ", Origen = '" + origen + '\'' +
+                ", Destino = '" + destino + '\'' +
+                ", Fecha Salida = " + fechaSalida +
+                ", Hora Llegada = " + horaLlegada +
+                ", Numero Pasajeros = " + numeroPasajeros +
                 ']';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Vuelo vuelo)) return false;
+        return numeroPasajeros == vuelo.numeroPasajeros && Objects.equals(codigoVuelo, vuelo.codigoVuelo) && Objects.equals(origen, vuelo.origen) && Objects.equals(destino, vuelo.destino) && Objects.equals(fechaSalida, vuelo.fechaSalida) && Objects.equals(horaLlegada, vuelo.horaLlegada);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigoVuelo, origen, destino, fechaSalida, horaLlegada, numeroPasajeros);
     }
 
     @Override
